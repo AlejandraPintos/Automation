@@ -18,7 +18,7 @@ public class MercadoLibreTest {
         WebElement testDropDown = driver.findElement(By.cssSelector("[title*=P].dropdown-toggle"));
         testDropDown.click();
 
-        Thread.sleep(5000);
+        Thread.sleep(4000);
 
         WebElement dropdown = driver.findElement(By.cssSelector("[title='Venezuela'].menu"));
 
