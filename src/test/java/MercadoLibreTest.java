@@ -1,50 +1,40 @@
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
+import PageObjects.MercadoLibreJobsPage;
+import PageObjects.MercadoLibreJobsDetailsPage;
 
 
 
 public class MercadoLibreTest {
     @Test
     public void prueba() throws Exception {
+
         WebDriver driver = new ChromeDriver();
-        driver.get("https://jobs.mercadolibre.com/?locale=es_ES");
+
+        MercadoLibreJobsPage.openPage(driver);
 
         Thread.sleep(5000);
 
-        WebElement testDropDown = driver.findElement(By.cssSelector("[title*=P].dropdown-toggle"));
-        testDropDown.click();
+        MercadoLibreJobsPage.clickOnCountryMenu(driver);
 
         Thread.sleep(4000);
 
-        WebElement dropdown = driver.findElement(By.cssSelector("[title='Venezuela'].menu"));
+        MercadoLibreJobsPage.selectCountry(driver);
 
-        dropdown.click();
+        Thread.sleep(3000);
 
-    }
+        MercadoLibreJobsDetailsPage.countrySelection(driver);
 
-    @Test
-    public void prueba2() throws Exception {
-        WebDriver driver2 = new ChromeDriver();
-        driver2.get("https://jobs.mercadolibre.com/go/Venezuela/7787100/");
+        MercadoLibreJobsDetailsPage.citySelection(driver);
 
-        Thread.sleep(5000);
+        MercadoLibreJobsDetailsPage.departmentSelection(driver);
 
-        Select dropdown = new Select(driver2.findElement(By.id("optionsFacetsDD_country")));
-        dropdown.selectByValue("BR");
+        MercadoLibreJobsDetailsPage.clickSearchButton(driver);
 
-        Select dropdown2 = new Select(driver2.findElement(By.id("optionsFacetsDD_city")));
-        dropdown2.selectByValue("Florianópolis");
+        Thread.sleep(2000);
 
-        Select dropdown3 = new Select(driver2.findElement(By.id("optionsFacetsDD_dept")));
-        dropdown3.selectByVisibleText("Producto");
-
-        WebElement searchButton = driver2.findElement(By.cssSelector(".submit-generico"));
-        searchButton.click();
-
+        driver.quit();
     }
 
 }

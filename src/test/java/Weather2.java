@@ -23,6 +23,7 @@ public class Weather2 {
 
          System.out.println(response2.jsonPath().getString("value"));
 
+
      }
 
 
